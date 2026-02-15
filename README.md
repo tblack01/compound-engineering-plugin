@@ -12,9 +12,9 @@ A Claude Code plugin marketplace featuring the **Compound Engineering Plugin** �
 /plugin install compound-engineering
 ```
 
-## OpenCode, Codex, Droid, Cursor, Pi & Copilot (experimental) Install
+## OpenCode, Codex, Droid, Cursor, Pi & Gemini (experimental) Install
 
-This repo includes a Bun/TypeScript CLI that converts Claude Code plugins to OpenCode, Codex, Factory Droid, Cursor, Pi, and GitHub Copilot.
+This repo includes a Bun/TypeScript CLI that converts Claude Code plugins to OpenCode, Codex, Factory Droid, Cursor, Pi, Gemini CLI and GitHub Copilot.
 
 ```bash
 # convert the compound-engineering plugin into OpenCode format
@@ -32,6 +32,9 @@ bunx @every-env/compound-plugin install compound-engineering --to cursor
 # convert to Pi format
 bunx @every-env/compound-plugin install compound-engineering --to pi
 
+# convert to Gemini CLI format
+bunx @every-env/compound-plugin install compound-engineering --to gemini
+
 # convert to GitHub Copilot format
 bunx @every-env/compound-plugin install compound-engineering --to copilot
 ```
@@ -47,6 +50,7 @@ Codex output is written to `~/.codex/prompts` and `~/.codex/skills`, with each C
 Droid output is written to `~/.factory/` with commands, droids (agents), and skills. Claude tool names are mapped to Factory equivalents (`Bash` → `Execute`, `Write` → `Create`, etc.) and namespace prefixes are stripped from commands.
 Cursor output is written to `.cursor/` with rules (`.mdc`), commands, skills, and `mcp.json`. Agents become "Agent Requested" rules (`alwaysApply: false`) so Cursor's AI activates them on demand. Works with both the Cursor IDE and Cursor CLI (`cursor-agent`) — they share the same `.cursor/` config directory.
 Pi output is written to `~/.pi/agent/` by default with prompts, skills, extensions, and `compound-engineering/mcporter.json` for MCPorter interoperability.
+Gemini output is written to `.gemini/` with skills (from agents), commands (`.toml`), and `settings.json` (MCP servers). Namespaced commands create directory structure (`workflows:plan` → `commands/workflows/plan.toml`). Skills use the identical SKILL.md standard and pass through unchanged.
 Copilot output is written to `.github/` with agents (`.agent.md`), skills (`SKILL.md`), and `copilot-mcp-config.json`. Agents get Copilot frontmatter (`description`, `tools: ["*"]`, `infer: true`), commands are converted to agent skills, and MCP server env vars are prefixed with `COPILOT_MCP_`.
 
 All provider targets are experimental and may change as the formats evolve.
