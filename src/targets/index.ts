@@ -64,6 +64,7 @@ export const targets: Record<string, TargetHandler> = {
     implemented: true,
     convert: convertClaudeToCopilot as TargetHandler<CopilotBundle>["convert"],
     write: writeCopilotBundle as TargetHandler<CopilotBundle>["write"],
+  },
   gemini: {
     name: "gemini",
     implemented: true,
